@@ -1,0 +1,43 @@
+en:
+  controllers:
+    api:
+      v1:
+        registrations_controller:
+          create: 
+            register_succes: 'Email confirmation is send successfully to'
+            fail_to_register: 'Failed to register user.'
+        sessions_controller:
+          create:
+            login_success: 'Logged in successfully.'
+            fail_to_login: 'Failed to register user.'
+            password_invalid: 'Password is invalid.'
+            email_not_found: 'This email does not exist.'
+          destroy:
+            logout_success: 'Logged out successfully.'
+            fail_to_logout: 'Failed to Logout.'
+        confirmations_controller:
+          create:
+            confirm_success: 'Your account is confirmed successfully.'
+            invalid_token: 'Confirmation Token is invalid.'
+            token_missing: 'Confirmation Token is missing.'
+        passwords_controller:
+          change_password:
+            password_updated: 'Password updated successfully.'
+            fail_to_update: 'Failed to update Password.'
+            password_validation_msg: 'Minimum 8 character, At least 1 capital,
+                                      1 alphabet & 1 number required,
+                                      Special character not allow.'
+            invalid_password: 'Password is invalid.'
+          create:
+            password_reset: 'You will receive an email with instructions
+                              on how to reset your password in a few minutes.'
+            fail_to_send: 'Failed to send an email with instruction.'
+            email_not_found: 'This email does not exist.'
+          reset_password:
+            success: 'Your password changed successfully.'
+            fail_to_reset: 'Failed to Reset Password.'
+            validation_msg: 'Minimum 8 character, At least 1 capital,
+                            1 alphabet & 1 number required, 
+                            Special character not allow.'
+            user_not_found: 'User not found.'
+
