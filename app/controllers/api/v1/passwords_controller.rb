@@ -9,7 +9,7 @@ class Api::V1::PasswordsController < ApiController
     else
       error_response_without_obj(
         HTTP_UNAUTHORIZED,
-        I18n.t('controllers.api.v1.passwords_controller.change_password.invalid_password')
+        I18n.t("#{get_controller}.change_password.invalid_password")
       )
     end
   end
@@ -21,7 +21,7 @@ class Api::V1::PasswordsController < ApiController
     else
       error_response_without_obj(
         HTTP_NOT_FOUND,
-        I18n.t('controllers.api.v1.passwords_controller.create.email_not_found')
+        I18n.t("#{get_controller}.create.email_not_found")
       )
     end
   end
@@ -33,7 +33,7 @@ class Api::V1::PasswordsController < ApiController
     else
       error_response_without_obj(
         HTTP_NOT_FOUND,
-        I18n.t('controllers.api.v1.passwords_controller.reset_password.fail_to_reset')
+        I18n.t("#{get_controller}.reset_password.fail_to_reset")
       )
     end
   end
@@ -46,7 +46,7 @@ class Api::V1::PasswordsController < ApiController
     else
       error_response_without_obj(
         HTTP_BAD_REQUEST,
-        I18n.t('controllers.api.v1.passwords_controller.change_password.password_validation_msg')
+        I18n.t("#{get_controller}.change_password.password_validation_msg")
       )
     end
   end
@@ -55,12 +55,12 @@ class Api::V1::PasswordsController < ApiController
     if current_user.update_attribute('password', user_new_password)
       success_response(
         HTTP_CREATED,
-        I18n.t('controllers.api.v1.passwords_controller.change_password.password_updated')
+        I18n.t("#{get_controller}.change_password.password_updated")
       )
     else
       error_response_without_obj(
         HTTP_BAD_REQUEST,
-        I18n.t('controllers.api.v1.passwords_controller.change_password.fail_to_update')
+        I18n.t("#{get_controller}.change_password.fail_to_update")
       )
     end
   end
@@ -68,11 +68,11 @@ class Api::V1::PasswordsController < ApiController
   def set_user_password(user)
     if user.deliver_password_reset_instructions
       success_response(
-        HTTP_CREATED, I18n.t('controllers.api.v1.passwords_controller.create.password_reset')
+        HTTP_CREATED, I18n.t("#{get_controller}.create.password_reset")
       )
     else
       error_response_without_obj(
-        HTTP_BAD_REQUEST, I18n.t('controllers.api.v1.passwords_controller.create.fail_to_send')
+        HTTP_BAD_REQUEST, I18n.t("#{get_controller}.create.fail_to_send")
       )
     end
   end
@@ -83,7 +83,7 @@ class Api::V1::PasswordsController < ApiController
     else
       error_response_without_obj(
         HTTP_BAD_REQUEST,
-        I18n.t('controllers.api.v1.passwords_controller.reset_password.validation_msg')
+        I18n.t("#{get_controller}.reset_password.validation_msg")
       )
     end
   end
@@ -92,12 +92,12 @@ class Api::V1::PasswordsController < ApiController
     if user.update_attribute('password', new_password)
       success_response(
         HTTP_CREATED,
-        I18n.t('controllers.api.v1.passwords_controller.reset_password.success')
+        I18n.t("#{get_controller}.reset_password.success")
       )
     else
       error_response_without_obj(
         HTTP_BAD_REQUEST,
-        I18n.t('controllers.api.v1.passwords_controller.reset_password.fail_to_reset')
+        I18n.t("#{get_controller}.reset_password.fail_to_reset")
       )
     end
   end

@@ -1,3 +1,4 @@
+# this is api controller
 class ApiController < ApplicationController
   include ApplicationHelper
   before_action :require_login
@@ -9,15 +10,19 @@ class ApiController < ApplicationController
         @current_user = auth_token.user
         true
       else
-        error_response_without_obj(HTTP_UNAUTHORIZED, 'Unable to Authenticate User.')
+        error_response_without_obj(HTTP_UNAUTHORIZED, I18n.t("#{get_controller}.require_login.unable_to_authenticate"))
       end
     else
-      error_response_without_obj(HTTP_UNAUTHORIZED, 'Authentication Token is Missing.')
+      error_response_without_obj(HTTP_UNAUTHORIZED, I18n.t("#{get_controller}.require_login.token_is_missing"))
     end
   end
 
   def current_user
     @current_user
+  end
+
+  def get_controller
+    "controllers.api.v1.#{self.controller_name}_controller"
   end
 
 end

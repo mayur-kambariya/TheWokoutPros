@@ -8,10 +8,10 @@ class Api::V1::RegistrationsController < ApiController
       user_info = UserSerializer.new(user).serializable_hash[:data][:attributes]
       success_response_with_message(
         user_info,
-        I18n.t('controllers.api.v1.registrations_controller.create.register_succes')
+        I18n.t("#{get_controller}.create.register_succes")
       )
     else
-      error_response_without_obj(HTTP_BAD_REQUEST, I18n.t('controllers.api.v1.registrations_controller.create.fail_to_register'))
+      error_response_without_obj(HTTP_BAD_REQUEST, I18n.t("#{get_controller}.create.fail_to_register"))
     end
   end
 

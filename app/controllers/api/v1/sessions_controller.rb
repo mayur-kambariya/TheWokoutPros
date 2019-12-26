@@ -10,13 +10,13 @@ class Api::V1::SessionsController < ApiController
       else
         error_response_without_obj(
           HTTP_BAD_REQUEST,
-          I18n.t('controllers.api.v1.sessions_controller.create.password_invalid')
+          I18n.t("#{get_controller}.create.password_invalid")
         )
       end
     else
       error_response_without_obj(
         HTTP_NOT_FOUND,
-        I18n.t('controllers.api.v1.sessions_controller.create.email_not_found')
+        I18n.t("#{get_controller}.create.email_not_found")
       )
     end
   end
@@ -26,9 +26,9 @@ class Api::V1::SessionsController < ApiController
     if auth_token.present?
       auth_token.destroy
       success_response(
-        HTTP_OK, I18n.t('controllers.api.v1.sessions_controller.destroy.logout_success'))
+        HTTP_OK, I18n.t("#{get_controller}.destroy.logout_success"))
     else
-      error_response_without_obj(HTTP_UNAUTHORIZED, I18n.t('controllers.api.v1.sessions_controller.destroy.fail_to_logout'))
+      error_response_without_obj(HTTP_UNAUTHORIZED, I18n.t("#{get_controller}.destroy.fail_to_logout"))
     end
   end
 
@@ -39,9 +39,9 @@ class Api::V1::SessionsController < ApiController
       token = user.generate_auth_token
       login_user = UserSerializer.new(user, params: {auth_token: token}).serializable_hash[:data][:attributes]
       success_response_with_object(login_user,
-        I18n.t('controllers.api.v1.sessions_controller.create.login_success'))
+        I18n.t("#{get_controller}.create.login_success"))
     else
-      error_response_without_obj(HTTP_BAD_REQUEST, I18n.t('controllers.api.v1.sessions_controller.create.fail_to_login'))
+      error_response_without_obj(HTTP_BAD_REQUEST, I18n.t("#{get_controller}.create.fail_to_login"))
     end
   end
 end

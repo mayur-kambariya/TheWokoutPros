@@ -1,3 +1,4 @@
+# this is the application helper
 module ApplicationHelper
   HTTP_CREATED = 201
   HTTP_OK = 200

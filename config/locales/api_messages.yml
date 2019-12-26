@@ -2,6 +2,10 @@ en:
   controllers:
     api:
       v1:
+        api_controller:
+          require_login:
+            unable_to_authenticate: 'Unable to Authenticate User.'
+            token_is_missing: 'Authentication Token is Missing.'
         registrations_controller:
           create: 
             register_succes: 'Email confirmation is send successfully to'
