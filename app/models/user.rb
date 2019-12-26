@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable
+
   ## RelationShip
   has_many :auth_tokens, dependent: :destroy
 
@@ -11,7 +12,7 @@ class User < ApplicationRecord
   validates :email, format: {
     with: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   }
-  # validate :password_complexity
+  validate :password_complexity
 
   def password_complexity
     if password.present? && !password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)
