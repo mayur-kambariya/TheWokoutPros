@@ -37,7 +37,7 @@ class Api::V1::SessionsController < ApiController
   def user_confirm_check(user)
     if user.confirmed?
       token = user.generate_auth_token
-      login_user = UserSerializer.new(user, params: {auth_token: token}).serializable_hash[:data][:attributes]
+      login_user = UserSerializer.new(user).serializable_hash[:data][:attributes].merge!({auth_token: token})
       success_response_with_object(login_user,
         I18n.t("#{get_controller}.create.login_success"))
     else

@@ -8,7 +8,7 @@ en:
             token_is_missing: 'Authentication Token is Missing.'
         registrations_controller:
           create: 
-            register_succes: 'Email confirmation is send successfully to'
+            register_success: 'User register successfully please try login with this email '
             fail_to_register: 'Failed to register user.'
         sessions_controller:
           create:

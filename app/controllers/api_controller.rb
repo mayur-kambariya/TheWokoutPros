@@ -10,10 +10,10 @@ class ApiController < ApplicationController
         @current_user = auth_token.user
         true
       else
-        error_response_without_obj(HTTP_UNAUTHORIZED, I18n.t("#{get_controller}.require_login.unable_to_authenticate"))
+        error_response_without_obj(HTTP_UNAUTHORIZED, I18n.t('controllers.api.v1.api_controller.require_login.unable_to_authenticate'))
       end
     else
-      error_response_without_obj(HTTP_UNAUTHORIZED, I18n.t("#{get_controller}.require_login.token_is_missing"))
+      error_response_without_obj(HTTP_UNAUTHORIZED, I18n.t('controllers.api.v1.api_controller.require_login.token_is_missing'))
     end
   end
 

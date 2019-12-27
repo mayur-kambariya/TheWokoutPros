@@ -4,14 +4,15 @@ class Api::V1::RegistrationsController < ApiController
 
   def create
     user = User.new(user_params)
+    user.skip_confirmation!
     if user.save
       user_info = UserSerializer.new(user).serializable_hash[:data][:attributes]
       success_response_with_message(
         user_info,
-        I18n.t("#{get_controller}.create.register_succes")
+        I18n.t("#{get_controller}.create.register_success")
       )
     else
-      error_response_without_obj(HTTP_BAD_REQUEST, I18n.t("#{get_controller}.create.fail_to_register"))
+      error_response_without_obj(HTTP_BAD_REQUEST, user.errors.full_messages)
     end
   end
 
