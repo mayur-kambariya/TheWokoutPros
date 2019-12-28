@@ -12,7 +12,7 @@ class Api::V1::RegistrationsController < ApiController
         I18n.t("#{get_controller}.create.register_success")
       )
     else
-      error_response_without_obj(HTTP_BAD_REQUEST, user.errors.full_messages)
+      error_response_without_obj(HTTP_BAD_REQUEST, user.errors.full_messages.join(', '))
     end
   end
 
