@@ -70,7 +70,7 @@ class Api::V1::ListingsController < ApiController
       :community_id, :author_id, :category_id, :listing_shape_id,
       location_attributes: [
         :id, :latitude, :longitude, :address, :google_address,
-        :listing_id, :location_type, :community_id
+        :listing_id, :location_type, :community_id, :_destroy
       ]
     )
   end

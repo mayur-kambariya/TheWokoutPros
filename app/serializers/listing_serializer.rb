@@ -31,6 +31,6 @@ class ListingSerializer
     end
   end
   attribute :location do |listing|
-    listing.location.present? ? listing.location : {}
+    listing.location.present? ? ListingLocationSerializer.new(listing.location).serializable_hash[:data][:attributes] : {}
   end
 end
