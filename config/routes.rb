@@ -7,6 +7,10 @@ Rails.application.routes.draw do
       post '/users/forget_password', to: 'passwords#create'
       post '/users/change_password', to: 'passwords#change_password'
       patch '/users/reset_password', to: 'passwords#reset_password'
+      resources :categories, only: :index
+      resources :listing_shapes , only: :index
+      resources :custom_field_option_titles, only: :index
+      resources :listings
     end
   end
 end

@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   ## RelationShip
   has_many :auth_tokens, dependent: :destroy
+  has_many :listings, dependent: :destroy
+
 
   ## Validation
   validates :email, format: {

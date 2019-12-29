@@ -1,0 +1,2 @@
+class ListingShape < ApplicationRecord
+end

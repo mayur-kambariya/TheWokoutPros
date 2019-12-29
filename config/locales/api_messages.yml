@@ -44,4 +44,24 @@ en:
                             1 alphabet & 1 number required, 
                             Special character not allow.'
             user_not_found: 'User not found.'
+        categories_controller:
+          index:
+            category_not_found: 'Category not found.'
+        listing_shapes_controller:
+          index:
+            listing_shape_not_found: 'Listing shapes not found.'
+        custom_field_option_titles_controller:
+          index:
+            plan_duration_not_found: 'Plan duration list not found.'
+        listings_controller:
+          index:
+            listing_not_found: 'Listing not found.'
+          create:
+            listing_created: 'Listing created successfully.'
+          show:
+            listing_not_found: 'Listing not found.'
+          update:
+            update_success: 'Listing updated successfully.'
+          destroy:
+            destroy_success: 'Listing deleted successfully.'
 
