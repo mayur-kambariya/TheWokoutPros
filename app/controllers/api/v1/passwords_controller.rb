@@ -2,14 +2,24 @@
 class Api::V1::PasswordsController < ApiController
   before_action :require_login, only: :change_password
 
+  # def change_password
+  #   if current_user.present? &&
+  #     current_user.valid_password?(params[:user][:password])
+  #     user_password_check(params[:user][:new_password])
+  #   else
+  #     error_response_without_obj(
+  #       HTTP_UNAUTHORIZED,
+  #       I18n.t("#{get_controller}.change_password.invalid_password")
+  #     )
+  #   end
+  # end
   def change_password
-    if current_user.present? &&
-      current_user.valid_password?(params[:user][:password])
-      user_password_check(params[:user][:new_password])
+    if current_user.present?
+      user_change_password_check(current_user, params[:user][:new_password], params[:user][:password_confirmation])
     else
       error_response_without_obj(
         HTTP_UNAUTHORIZED,
-        I18n.t("#{get_controller}.change_password.invalid_password")
+        I18n.t("#{get_controller}.change_password.user_not_found")
       )
     end
   end
@@ -40,28 +50,25 @@ class Api::V1::PasswordsController < ApiController
 
   private
 
-  def user_password_check(get_user_new_password)
-    if get_user_new_password.match(/\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}\z/)
-      user_update_attribute(get_user_new_password)
+  def user_change_password_check(user, new_password, password_confirmation)
+    if new_password.eql?(password_confirmation)
+      if user.update_attributes(password: new_password,
+          password_confirmation: password_confirmation)
+        success_response(
+          HTTP_CREATED,
+          I18n.t("#{get_controller}.change_password.password_updated")
+        )
+      else
+        error_response_without_obj(
+          HTTP_BAD_REQUEST,
+          I18n.t("#{get_controller}.change_password.fail_to_update")
+        )
+      end
     else
       error_response_without_obj(
-        HTTP_BAD_REQUEST,
-        I18n.t("#{get_controller}.change_password.password_validation_msg")
-      )
-    end
-  end
-
-  def user_update_attribute(user_new_password)
-    if current_user.update_attribute('password', user_new_password)
-      success_response(
-        HTTP_CREATED,
-        I18n.t("#{get_controller}.change_password.password_updated")
-      )
-    else
-      error_response_without_obj(
-        HTTP_BAD_REQUEST,
-        I18n.t("#{get_controller}.change_password.fail_to_update")
-      )
+          HTTP_UNAUTHORIZED,
+          I18n.t("#{get_controller}.change_password.invalid_password")
+        )
     end
   end
 

@@ -31,7 +31,8 @@ en:
             password_validation_msg: 'Minimum 8 character, At least 1 capital,
                                       1 alphabet & 1 number required,
                                       Special character not allow.'
-            invalid_password: 'Password is invalid.'
+            invalid_password: 'Your password and confirmation password do not match.'
+            user_not_found: 'User not found.'
           create:
             password_reset: 'You will receive an email with instructions
                               on how to reset your password in a few minutes.'
@@ -64,4 +65,7 @@ en:
             update_success: 'Listing updated successfully.'
           destroy:
             destroy_success: 'Listing deleted successfully.'
+        invitations_controller:
+          create:
+            sent_invitation: 'Sent invitation successfully.'
 

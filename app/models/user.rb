@@ -8,13 +8,14 @@ class User < ApplicationRecord
   ## RelationShip
   has_many :auth_tokens, dependent: :destroy
   has_many :listings, dependent: :destroy
-
+  has_many :invitations, dependent: :destroy
 
   ## Validation
   validates :email, format: {
     with: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   }
   validate :password_complexity
+  validates :password, confirmation: { case_sensitive: true }
 
   def password_complexity
     if password.present? && !password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)
