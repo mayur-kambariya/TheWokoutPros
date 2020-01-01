@@ -3,8 +3,8 @@ class ListingSerializer
   attributes :id, :title, :description, :valid_until, :open, :origin, :user_id,
               :created_at, :updated_at
 
-  attribute :custom_field_option_title_id do |listing|
-    listing.custom_field_option_title_id.present? ? listing.custom_field_option_title_id : ''
+  attribute :paln_duration do |listing|
+    listing.custom_field_option_title.present? ? listing.custom_field_option_title : ''
   end
   attribute :community_id do |listing|
     listing.community_id.present? ? listing.community_id : ''
@@ -12,11 +12,11 @@ class ListingSerializer
   attribute :author_id do |listing|
     listing.author_id.present? ? listing.author_id : ''
   end
-  attribute :category_id do |listing|
-    listing.category_id.present? ? listing.category_id : ''
+  attribute :category do |listing|
+    listing.category.present? ? listing.category : ''
   end
-  attribute :listing_shape_id do |listing|
-    listing.listing_shape_id.present? ? listing.listing_shape_id : ''
+  attribute :listing_shape do |listing|
+    listing.listing_shape.present? ? listing.listing_shape : ''
   end
   attribute :listing_images do |listing|
     if listing.listing_images.present?
