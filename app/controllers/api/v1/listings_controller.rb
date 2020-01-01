@@ -2,31 +2,13 @@ class Api::V1::ListingsController < ApiController
   before_action :find_listing, only: [:show, :update, :destroy]
 
   def index
-    my_listings = Listing.all
-    if my_listings.present?
-      get_my_listings = ListingSerializer.new(my_listings).serializable_hash[:data].map{ |data| data[:attributes]}
-      success_response_with_object(get_my_listings,
-        "Ok")
-    else
-      error_response_without_obj(
-        HTTP_NOT_FOUND,
-        I18n.t("#{get_controller}.index.listing_not_found")
-      )
-    end
+    all_listings = Listing.all
+    get_listing(all_listings)
   end
 
   def get_user_listings
     user_listing = current_user.listings
-    if user_listing.present?
-      get_user_listing = ListingSerializer.new(user_listing).serializable_hash[:data].map{ |data| data[:attributes]}
-      success_response_with_object(get_user_listing,
-        "Ok")
-    else
-      error_response_without_obj(
-        HTTP_NOT_FOUND,
-        I18n.t("#{get_controller}.index.listing_not_found")
-      )
-    end
+    get_listing(user_listing)
   end
 
   def create
@@ -99,6 +81,19 @@ class Api::V1::ListingsController < ApiController
       error_response_without_obj(
         HTTP_BAD_REQUEST,
         I18n.t("#{get_controller}.show.listing_not_found")
+      )
+    end
+  end
+
+  def get_listing(my_listings)
+    if my_listings.present?
+      get_listing = ListingSerializer.new(my_listings).serializable_hash[:data].map{ |data| data[:attributes]}
+      success_response_with_object(get_listing,
+        "Ok")
+    else
+      error_response_without_obj(
+        HTTP_NOT_FOUND,
+        I18n.t("#{get_controller}.index.listing_not_found")
       )
     end
   end
