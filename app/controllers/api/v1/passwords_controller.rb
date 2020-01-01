@@ -2,17 +2,6 @@
 class Api::V1::PasswordsController < ApiController
   before_action :require_login, only: :change_password
 
-  # def change_password
-  #   if current_user.present? &&
-  #     current_user.valid_password?(params[:user][:password])
-  #     user_password_check(params[:user][:new_password])
-  #   else
-  #     error_response_without_obj(
-  #       HTTP_UNAUTHORIZED,
-  #       I18n.t("#{get_controller}.change_password.invalid_password")
-  #     )
-  #   end
-  # end
   def change_password
     if current_user.present?
       user_change_password_check(current_user, params[:user][:new_password], params[:user][:password_confirmation])
