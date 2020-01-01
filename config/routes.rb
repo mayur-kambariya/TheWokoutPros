@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :listing_shapes , only: :index
       resources :custom_field_option_titles, only: :index
       resources :listings
+      get '/get_user_listings', to: 'listings#get_user_listings'
       resources :invitations, only: :create
     end
   end

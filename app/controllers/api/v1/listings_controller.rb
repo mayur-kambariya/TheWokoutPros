@@ -15,10 +15,26 @@ class Api::V1::ListingsController < ApiController
     end
   end
 
+  def get_user_listings
+    user_listing = current_user.listings
+    if user_listing.present?
+      get_user_listing = ListingSerializer.new(user_listing).serializable_hash[:data].map{ |data| data[:attributes]}
+      success_response_with_object(get_user_listing,
+        "Ok")
+    else
+      error_response_without_obj(
+        HTTP_NOT_FOUND,
+        I18n.t("#{get_controller}.index.listing_not_found")
+      )
+    end
+  end
+
   def create
     listing = current_user.listings.new(listing_params)
     if listing.save
-      listing.listing_images.attach(params[:listing][:listing_images])
+      if params[:listing][:listing_images]
+        listing.listing_images.attach(params[:listing][:listing_images])
+      end
       listing_info = ListingSerializer.new(listing).serializable_hash[:data][:attributes]
       success_response_with_message(
         listing_info,
@@ -37,7 +53,9 @@ class Api::V1::ListingsController < ApiController
 
   def update
     if @listing.update(listing_params)
-      @listing.listing_images.attach(params[:listing][:listing_images])
+      if params[:listing][:listing_images].present?
+        @listing.listing_images.attach(params[:listing][:listing_images])
+      end
       my_listing_info = ListingSerializer.new(@listing).serializable_hash[:data][:attributes]
       success_response_with_message(
         my_listing_info,

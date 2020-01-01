@@ -1,6 +1,7 @@
 class ListingSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :title, :description, :valid_until, :open, :origin, :user_id
+  attributes :id, :title, :description, :valid_until, :open, :origin, :user_id,
+              :created_at, :updated_at
 
   attribute :custom_field_option_title_id do |listing|
     listing.custom_field_option_title_id.present? ? listing.custom_field_option_title_id : ''
