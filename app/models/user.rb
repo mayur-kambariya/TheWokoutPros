@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :auth_tokens, dependent: :destroy
   has_many :listings, dependent: :destroy
   has_many :invitations, dependent: :destroy
+  has_one :profile, dependent: :destroy
 
   ## Validation
   validates :email, format: {

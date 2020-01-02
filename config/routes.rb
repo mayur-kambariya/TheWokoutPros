@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :listings
       get '/get_user_listings', to: 'listings#get_user_listings'
       resources :invitations, only: :create
+      resources :profiles, only: [:update, :show]
     end
   end
 end

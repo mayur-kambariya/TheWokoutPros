@@ -6,6 +6,8 @@ class Api::V1::RegistrationsController < ApiController
     user = User.new(user_params)
     user.skip_confirmation!
     if user.save
+      user_profile = user.build_profile(first_name: user.first_name, last_name: user.last_name)
+      user_profile.save
       user_info = UserSerializer.new(user).serializable_hash[:data][:attributes]
       success_response_with_message(
         user_info,

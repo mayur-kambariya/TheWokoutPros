@@ -68,4 +68,10 @@ en:
         invitations_controller:
           create:
             sent_invitation: 'Sent invitation successfully.'
+        profiles_controller:
+          update:
+            profile_not_found: 'User profile not found.'
+            update_success: 'User profile updated successfully.'
+          show:
+            profile_not_found: 'User profile not found.'
 

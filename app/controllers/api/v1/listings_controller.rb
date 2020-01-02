@@ -14,7 +14,7 @@ class Api::V1::ListingsController < ApiController
   def create
     listing = current_user.listings.new(listing_params)
     if listing.save
-      if params[:listing][:listing_images]
+      if params[:listing][:listing_images].present?
         listing.listing_images.attach(params[:listing][:listing_images])
       end
       listing_info = ListingSerializer.new(listing).serializable_hash[:data][:attributes]
