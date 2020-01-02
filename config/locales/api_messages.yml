@@ -74,4 +74,7 @@ en:
             update_success: 'User profile updated successfully.'
           show:
             profile_not_found: 'User profile not found.'
+        feedbacks_controller:
+          create:
+            feedback_send: "Thanks a lot for your message! We'll get back to you as soon as possible."
 

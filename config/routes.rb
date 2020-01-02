@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get '/get_user_listings', to: 'listings#get_user_listings'
       resources :invitations, only: :create
       resources :profiles, only: [:update, :show]
+      resources :feedbacks, only: [:create]
     end
   end
 end
