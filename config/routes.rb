@@ -13,7 +13,8 @@ Rails.application.routes.draw do
       resources :listings
       get '/get_user_listings', to: 'listings#get_user_listings'
       resources :invitations, only: :create
-      resources :profiles, only: [:update, :show]
+      get '/profile', to: 'profiles#index'
+      patch '/update_profile', to: 'profiles#update_profile'
       resources :feedbacks, only: [:create]
     end
   end

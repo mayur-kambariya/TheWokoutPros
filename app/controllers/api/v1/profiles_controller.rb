@@ -1,17 +1,6 @@
 class Api::V1::ProfilesController < ApiController
 
-  def update
-    if current_user.profile.present?
-      user_profile_update(current_user.profile)
-    else
-      error_response_without_obj(
-        HTTP_NOT_FOUND,
-        I18n.t("#{get_controller}.update.profile_not_found")
-      )
-    end
-  end
-
-  def show
+  def index
     if current_user.profile.present?
       user_profile = ProfileSerializer.new(current_user.profile)
       success_response_with_object(user_profile.serializable_hash[:data][:attributes],
@@ -20,6 +9,17 @@ class Api::V1::ProfilesController < ApiController
       error_response_without_obj(
         HTTP_NOT_FOUND,
         I18n.t("#{get_controller}.show.profile_not_found")
+      )
+    end
+  end
+
+  def update_profile
+    if current_user.profile.present?
+      user_profile_update(current_user.profile)
+    else
+      error_response_without_obj(
+        HTTP_NOT_FOUND,
+        I18n.t("#{get_controller}.update.profile_not_found")
       )
     end
   end
