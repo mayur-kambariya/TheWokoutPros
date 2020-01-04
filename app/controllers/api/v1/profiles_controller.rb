@@ -1,6 +1,6 @@
 class Api::V1::ProfilesController < ApiController
 
-  def index
+  def get_profile
     if current_user.profile.present?
       user_profile = ProfileSerializer.new(current_user.profile)
       success_response_with_object(user_profile.serializable_hash[:data][:attributes],
