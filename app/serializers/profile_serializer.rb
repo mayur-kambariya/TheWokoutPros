@@ -11,13 +11,13 @@ class ProfileSerializer
   end
   attribute :profile_picture do |profile|
     if profile.profile_picture.present?
-      Rails.application.routes.url_helpers.rails_blob_path(profile.profile_picture, only_path: true)
+      '' #Rails.application.routes.url_helpers.rails_blob_path(profile.profile_picture, only_path: true)
     else
       ''
     end
   end
   attribute :aditional_pictures do |profile|
-    if profile.aditional_pictures.present?
+    if false && profile.aditional_pictures.present?
       if profile.aditional_pictures.attached?
         my_aditional_pictures = []
         profile.aditional_pictures.each do |attachment|
